@@ -3,23 +3,22 @@
  * @author Christian
  *
  */
-public class Driver 
+public class Driver extends Account
 {
-	private Account account;
-	private boolean status;
-	public Driver(Account account){
-		this.account = account;
-		this.status = false;
+	private boolean available = true;
+	
+	
+	public Driver(String name, float balance, Location loc){
+		super(name, balance,loc);
+		
 	}
 	
-	public Account getAccount(){
-		return account;
-	}
 	public boolean getStatus(){
-		return status;
+		return available;
 	}
+	
 	public void setStatus(Boolean newStatus){
-		status = newStatus;
+		available = newStatus;
 	}
 
 	

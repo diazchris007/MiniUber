@@ -1,11 +1,19 @@
 
-public class Passenger {
-	private Account account;
-	
-	public Passenger(Account account){
-		this.account = account;
+public class Passenger extends Account{
+
+	public Passenger(String name, float balance, Location loc){
+		super(name, balance, loc);
 	}
-	public Account getAccount(){
-		return account;
+	public Boolean requestRide(Management Unit,Location Dest) {
+		Driver driver = (Driver) Unit.getNearest(this.loc);
+		
+		if(driver != null) {
+			if(sendPayment(driver,Unit.calcFare(this.loc,driver.getLocation(),Dest))){
+				driver.setStatus(false);
+				
+			}
+		}
+		return false;
 	}
+
 }

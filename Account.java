@@ -1,22 +1,30 @@
 
 public class Account {
 	private String name;
-	private float balance;
+	private double balance;
 	private Rating rating;
-	private Location loc;
-	public Account(String name, float balance, Location loc){
+	protected Location loc;
+
+	
+	
+	public Account(String name, double balance, Location loc){
 		this.name = name;
 		this.balance = balance;
 		this.rating = new Rating();
 		this.loc = loc;
+
 	}	
+	
 	public String getName(){
 		return name;
 	}
-	public float getBalance(){
+	
+	public double getBalance(){
 		return balance;
 	}
-	public boolean sendPayment(Account other, float amount){
+	
+	public boolean sendPayment(Account other, Double amount){
+		
 		if(this.balance >= amount){
 			this.balance -= amount;
 			other.setBalance(other.getBalance() + amount);
@@ -26,15 +34,17 @@ public class Account {
 			
 			return true;
 		}
+		System.out.println("Can not afford $" + amount + " balance is $" + balance);
 		return false;
 	}
+	
 	public Rating getRating(){
 		return rating;
 	}
 	public Location getLocation(){
 		return loc;
 	}
-	public void setBalance(float newBalance){
+	public void setBalance(double newBalance){
 		this.balance = newBalance;
 	}
 	
