@@ -1,11 +1,14 @@
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Management {
 	private static Area area;
-	private Queue drivers;
-	private List passengers;
+	private List drivers = new LinkedList();
+	private List passengers = new LinkedList();
 	
 	public Management(Area area) {
 		if(area == null)
@@ -14,15 +17,15 @@ public class Management {
 			this.area = area;
 		}
 	}
-	public void addDriver(Account newDriver) {
+	public void addDriver(Driver newDriver) {
 		area.addPerson(newDriver.getLocation());
 		drivers.add(newDriver);
 	}
-	public void addPassenger(Account newDriver) {
-		area.addPerson(newDriver.getLocation());
-		passengers.add(newDriver);
+	public void addPassenger(Passenger newPassenger) {
+		area.addPerson(newPassenger.getLocation());
+		passengers.add(newPassenger);
 	}
-	public Queue getDrivers() {
+	public List getDrivers() {
 		return drivers;
 	}
 	public Account getNearest(Location loc) {
@@ -33,16 +36,17 @@ public class Management {
 		for(Iterator j = drivers.iterator();j.hasNext();) {
 			Driver driver = (Driver)j.next();
 			tempDistance = driver.getLocation().getDistance(loc);
-			
-			if(tempDistance > minDistance) {
-				minDistance= tempDistance;
-				nearest = driver;
-			}
-			else if(tempDistance == minDistance) {
-				
-				if(driver.getRating() > nearest.getRating()) {
-					minDistance = tempDistance;
+			if(driver.getStatus()) {
+				if(tempDistance > minDistance) {
+					minDistance= tempDistance;
 					nearest = driver;
+				}
+				else if(tempDistance == minDistance) {
+					
+					if(driver.getRating().getRating() > nearest.getRating().getRating()) {
+						minDistance = tempDistance;
+						nearest = driver;
+					}
 				}
 			}
 		}
@@ -50,10 +54,11 @@ public class Management {
 		return nearest;
 	}
 	
+	
 	public List getPassengers() {
 		return passengers;
 	}
-	public Double calcFare(Location passengerLoc,Location DriverLoc , Location dest) {
+	public Double calcTtlDist(Location passengerLoc,Location DriverLoc , Location dest) {
 		Double ttlDistance = 0.00;
 		ttlDistance += DriverLoc.getDistance(passengerLoc);
 		ttlDistance += passengerLoc.getDistance(dest);

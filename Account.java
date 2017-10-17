@@ -1,5 +1,5 @@
 
-public class Account {
+public abstract class Account {
 	private String name;
 	private double balance;
 	private Rating rating;
@@ -28,7 +28,7 @@ public class Account {
 		if(this.balance >= amount){
 			this.balance -= amount;
 			other.setBalance(other.getBalance() + amount);
-			System.out.println(other.name +" paid " + name + " $" + amount);
+			System.out.println(name +" paid " + other.name + " $" + amount);
 			System.out.println(other.name +" new Balance $" + other.getBalance());
 			System.out.println(name +" new balance $" + balance);
 			
