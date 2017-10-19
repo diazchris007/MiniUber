@@ -9,7 +9,7 @@ public class Management {
 	private static Area area;
 	private List drivers = new LinkedList();
 	private List passengers = new LinkedList();
-	
+	private List trips = new LinkedList();
 	public Management(Area area) {
 		if(area == null)
 			this.area = new Area();
@@ -28,7 +28,7 @@ public class Management {
 	public List getDrivers() {
 		return drivers;
 	}
-	public Account getNearest(Location loc) {
+	public Driver getNearest(Location loc) {
 		Driver nearest = null;
 		double tempDistance;
 		double minDistance = 0;
@@ -53,17 +53,39 @@ public class Management {
 			
 		return nearest;
 	}
-	
-	
 	public List getPassengers() {
 		return passengers;
 	}
-	public Double calcTtlDist(Location passengerLoc,Location DriverLoc , Location dest) {
-		Double ttlDistance = 0.00;
-		ttlDistance += DriverLoc.getDistance(passengerLoc);
-		ttlDistance += passengerLoc.getDistance(dest);
-		
-		return ttlDistance;
-	}
 	
+	public void addTrip(Account account, Location destination) {
+
+		Driver driver = getNearest(account.getLocation());
+		
+		if(driver != null) {
+
+			if(driver.getStatus()) {
+				Trip trip = new Trip(driver,account,destination);
+				
+				System.out.println(driver.getName()+" is nearest.");
+				if(account.sendPayment(driver,trip.getTtlDistance()))
+				{
+					driver.setStatus(false);
+					account.giveRating(driver);
+
+					trips.add(trip);
+				}
+				else {
+					System.out.println("Payment Failed");
+				}
+			}
+			else {
+			System.out.println("Driver not Available");
+			}
+			
+		}
+		System.out.println("No Drivers Available");
+	}
+
+	}
+
 }

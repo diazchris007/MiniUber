@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public abstract class Account {
 	private String name;
@@ -5,8 +6,6 @@ public abstract class Account {
 	private Rating rating;
 	protected Location loc;
 
-	
-	
 	public Account(String name, double balance, Location loc){
 		this.name = name;
 		this.balance = balance;
@@ -23,6 +22,17 @@ public abstract class Account {
 		return balance;
 	}
 	
+
+	public Rating getRating(){
+		return rating;
+	}
+	public Location getLocation(){
+		return loc;
+	}
+	public void setBalance(double newBalance){
+		this.balance = newBalance;
+	}
+	
 	public boolean sendPayment(Account other, Double amount){
 		
 		if(this.balance >= amount){
@@ -37,15 +47,40 @@ public abstract class Account {
 		System.out.println("Can not afford $" + amount + " balance is $" + balance);
 		return false;
 	}
+	public void giveRating(Account acct) {
+		int temp = new Random().nextInt(5);
+		acct.getRating().addRate(temp);
+		System.out.println(this.getName() + " gave "+ acct.getName() + " a " + temp);
+		return;
+	}
 	
-	public Rating getRating(){
-		return rating;
+	public Boolean requestRide(Management Unit,Location Dest) {
+		Unit.addTrip(this, Dest);
+		/*
+		if(driver != null) {
+			if(driver.getStatus()) {
+				System.out.println(driver.getName()+" is nearest.");
+				if(this.sendPayment(driver,Unit.calcTtlDist(this.loc,driver.getLocation(),Dest))){
+					driver.setStatus(false);
+					giveRating(driver);
+					return true;
+				}
+				else {
+					System.out.println("Payment Failed");
+					return false;
+				}
+			}
+			else {
+			System.out.println("Driver not Available");
+			return false;
+			}
+			
+		}
+		System.out.println("No Drivers Available");
+		return false;
 	}
-	public Location getLocation(){
-		return loc;
-	}
-	public void setBalance(double newBalance){
-		this.balance = newBalance;
-	}
+	*/
+		return true;
+		}
 	
 }
