@@ -1,3 +1,6 @@
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * 
  * @author Christian
@@ -17,8 +20,10 @@ public class Driver extends Account
 		return available;
 	}
 	
-	public void setStatus(Boolean newStatus){
-		available = newStatus;
+	public void setStatus(boolean b) {
+		// TODO Auto-generated method stubs
+		available = b;
+		
 	}
 
 	

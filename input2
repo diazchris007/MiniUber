@@ -1,0 +1,4 @@
+{"name":"Javi","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":16,"y":16}}
+{"name":"Nayele","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":2,"y":3}}
+{"available":true,"name":"Christian","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":1,"y":1}}
+{"available":true,"name":"Michael","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":5,"y":12}}

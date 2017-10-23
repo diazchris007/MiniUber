@@ -1,0 +1,15 @@
+{"name":"Eric","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":0,"y":0}}
+{"name":"Errick","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":5,"y":5}}
+{"name":"Victor","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":1,"y":5}}
+{"name":"Javi","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":6,"y":1}}
+{"name":"Nayele","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":23,"y":133}}
+{"available":true,"name":"Christian","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":1,"y":1}}
+{"available":true,"name":"Michael","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":125,"y":123}}
+{"available":true,"name":"Gary","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":3,"y":8}}
+{"available":true,"name":"Sam","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":15,"y":8}}
+{"available":true,"name":"Jordan","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":3,"y":1}}
+{"available":true,"name":"Thomas","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":6,"y":7}}
+{"available":true,"name":"Steven","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":3,"y":3}}
+{"available":true,"name":"Genesis","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":2,"y":8}}
+{"available":true,"name":"Jessica","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":3,"y":3}}
+{"available":true,"name":"Amber","balance":300.0,"rating":{"rating":0.0,"rates":0,"rateSum":0},"loc":{"x":2,"y":11}}

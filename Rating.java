@@ -1,4 +1,8 @@
-
+/**
+ * handles the rating system for all accounts
+ * @author TheTaco
+ *
+ */
 public class Rating {
 	private float rating;
 	private int rates;
@@ -20,7 +24,10 @@ public class Rating {
 	public int getRateSum(){
 		return rateSum;
 	}
-	
+/**
+ * adjusts the rating	
+ * @param newRate an integer rating for a trip
+ */
 	public void addRate(int newRate){
 		rateSum += newRate;
 		rates +=1;

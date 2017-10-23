@@ -1,44 +1,84 @@
-import java.util.Random;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FilePermission;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
+
+
+import com.google.gson.Gson;
 
 public class UberTester {
 
 	public static void main(String[] args) {
-		
-		Random rand = new Random();
-		Location[] l= new Location [10];
-		Location[] dests = new Location[6];
+
 		Area a = new Area();
-		for(int i = 0; i < l.length;i++) {
-			l[i] = new Location(rand.nextInt(300),rand.nextInt(300));
-		}
-		for(int i = 0; i < dests.length;i++) {
-			dests[i] = new Location(rand.nextInt(300),rand.nextInt(300));
-		}
-		
-		Driver d1 = new Driver("Christian", 300, l[0]);
-		Driver d2 = new Driver("Michael", 300, l[1]);
-		Driver d3 = new Driver("Gary", 300, l[2]);
-		Driver d4 = new Driver("Sam", 300, l[3]);
-		
-		Passenger p1 = new Passenger("Eric", 300, l[4]);
-		Passenger p2 = new Passenger("Errick", 300, l[5]);
-		Passenger p3 = new Passenger("Victor", 300, l[6]);
-		Passenger p4 = new Passenger("Javi", 300, l[7]);
-		Passenger p5 = new Passenger("Nayele", 300, l[8]);
-		Passenger p6 = new Passenger("Clarisa", 300, l[9]);
+		List<Driver> drivers = new ArrayList<Driver>();
+		List <Passenger>passengers = new ArrayList<Passenger>();
+
 		Management manager = new Management(a);
+		Gson g = new Gson();
+		Random rand = new Random();
+
 		
-		manager.addDriver(d1);
-		manager.addDriver(d2);
-		manager.addDriver(d3);
-		manager.addDriver(d4);
-		p1.requestRide(manager, dests[0]);
-		p2.requestRide(manager, dests[1]);
-		p3.requestRide(manager, dests[2]);
-		p4.requestRide(manager, dests[3]);
-		p5.requestRide(manager, dests[4]);
-		p6.requestRide(manager, dests[5]);		
-		
+		try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\TheTaco\\Desktop\\eclip\\ws\\MiniUber\\src\\input.txt"))) {
+
+			String sCurrentLine;
+
+			while ((sCurrentLine = br.readLine()) != null) {
+
+				if(sCurrentLine.contains("available")) {
+					manager.addDriver((Driver)g.fromJson(sCurrentLine,Driver.class));
+				}
+				else if(sCurrentLine.length() >0) {
+					manager.addPassenger((Passenger)g.fromJson(sCurrentLine,Passenger.class));
+				}
+			}
+			/*
+			Location[] dests = new Location[manager.getPassengers().size()];
+			for(int i = 0; i < dests.length;i++) {
+				dests[i] = new Location(rand.nextInt(15),rand.nextInt(15));
+			}
+			*/
+			passengers = manager.getPassengers();
+			drivers = manager.getDrivers();
+			int i = 0;
+			manager.getArea().printArea();
+			Location[] dests = new Location[3];
+			
+			dests[0] = new Location(0,3);
+			dests[1] = new Location(3,0);
+			dests[2] = new Location(20,3);
+			
+			passengers.get(0).requestRide(manager, dests[0]);
+			try {
+				Thread.currentThread().sleep(1000);
+				
+			}catch(InterruptedException e) {}
+
+			passengers.get(1).requestRide(manager, dests[1]);
+			try {
+				Thread.currentThread().sleep(1000);
+				
+			}catch(InterruptedException e) {}
+
+			passengers.get(2).requestRide(manager, dests[2]);
+
+			try {
+				Thread.currentThread().sleep(1000);
+				
+			}catch(InterruptedException e) {}
+			
+			manager.printTrips();
+			manager.finalPrint();
+			manager.getArea().printArea();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+
 	}
 
 }
